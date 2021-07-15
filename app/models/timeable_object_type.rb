@@ -1,0 +1,2 @@
+class TimeableObjectType < ApplicationRecord
+end

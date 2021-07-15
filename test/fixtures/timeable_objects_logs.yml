@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  timeable_object: one
+  user: one
+  server: one
+  description: MyString
+
+two:
+  timeable_object: two
+  user: two
+  server: two
+  description: MyString

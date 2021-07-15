@@ -1,0 +1,2 @@
+class GuildMemberType < ApplicationRecord
+end

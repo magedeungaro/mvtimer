@@ -10,63 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_031327) do
+ActiveRecord::Schema.define(version: 2021_07_20_023123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "account_tier_types", force: :cascade do |t|
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "guild_member_types", force: :cascade do |t|
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "guilds", force: :cascade do |t|
     t.string "guild_name"
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "servers", force: :cascade do |t|
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "timeable_object_logs", force: :cascade do |t|
+    t.string "description"
+    t.bigint "server_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "timeable_object_id", null: false
+    t.bigint "guild_id"
+    t.index ["guild_id"], name: "index_timeable_object_logs_on_guild_id"
+    t.index ["server_id"], name: "index_timeable_object_logs_on_server_id"
+    t.index ["timeable_object_id"], name: "index_timeable_object_logs_on_timeable_object_id"
+    t.index ["user_id"], name: "index_timeable_object_logs_on_user_id"
   end
 
   create_table "timeable_object_types", force: :cascade do |t|
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "timeable_objects", force: :cascade do |t|
     t.bigint "timeable_object_type_id", null: false
     t.bigint "user_id", null: false
     t.string "map_id"
-    t.float "interval"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "interval"
     t.index ["timeable_object_type_id"], name: "index_timeable_objects_on_timeable_object_type_id"
     t.index ["user_id"], name: "index_timeable_objects_on_user_id"
-  end
-
-  create_table "timeable_objects_logs", force: :cascade do |t|
-    t.bigint "timeable_object_id", null: false
-    t.bigint "user_id", null: false
-    t.bigint "server_id", null: false
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["server_id"], name: "index_timeable_objects_logs_on_server_id"
-    t.index ["timeable_object_id"], name: "index_timeable_objects_logs_on_timeable_object_id"
-    t.index ["user_id"], name: "index_timeable_objects_logs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,14 +65,13 @@ ActiveRecord::Schema.define(version: 2021_07_15_031327) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "first_name"
+    t.bigint "account_tier_type_id"
+    t.bigint "guild_member_type_id"
+    t.bigint "guild_id"
+    t.string "first_name", null: false
     t.string "last_name"
     t.string "user_bio"
-    t.string "user_nickname"
-    t.bigint "guild_id", null: false
-    t.bigint "guild_member_type_id", null: false
-    t.bigint "account_tier_type_id", null: false
-    t.datetime "timezone"
+    t.string "user_nickname", null: false
     t.index ["account_tier_type_id"], name: "index_users_on_account_tier_type_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["guild_id"], name: "index_users_on_guild_id"
@@ -92,11 +79,12 @@ ActiveRecord::Schema.define(version: 2021_07_15_031327) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "timeable_object_logs", "guilds"
+  add_foreign_key "timeable_object_logs", "servers"
+  add_foreign_key "timeable_object_logs", "timeable_objects"
+  add_foreign_key "timeable_object_logs", "users"
   add_foreign_key "timeable_objects", "timeable_object_types"
   add_foreign_key "timeable_objects", "users"
-  add_foreign_key "timeable_objects_logs", "servers"
-  add_foreign_key "timeable_objects_logs", "timeable_objects"
-  add_foreign_key "timeable_objects_logs", "users"
   add_foreign_key "users", "account_tier_types"
   add_foreign_key "users", "guild_member_types"
   add_foreign_key "users", "guilds"

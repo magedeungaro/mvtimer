@@ -4,8 +4,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
   def change
     create_table :users do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ''
-      t.string :encrypted_password, null: false, default: ''
+      t.string :email,              null: false, default: ""
+      t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -18,8 +18,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at
       # t.datetime :last_sign_in_at
-      # t.string   :current_sign_in_ip
-      # t.string   :last_sign_in_ip
+      # t.inet     :current_sign_in_ip
+      # t.inet     :last_sign_in_ip
 
       ## Confirmable
       # t.string   :confirmation_token
@@ -32,12 +32,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      t.timestamps null: false
 
-      t.string :first_name
-      t.string :last_name
+      t.timestamps null: false
+      t.references :account_tier_type, foreign_key: true
+      t.references :guild_member_type, foreign_key: true
+      t.references :guild, foreign_key: true
+      t.string :first_name, null: false
+      t.string :last_name, null: true
       t.string :user_bio
-      t.string :user_nickname
+      t.string :user_nickname, null: false
     end
 
     add_index :users, :email,                unique: true

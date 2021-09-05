@@ -6,8 +6,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 
 # Gemfile
+gem 'cloudinary'
 gem 'devise'
 gem 'devise-jwt'
+gem 'dotenv-rails', groups: %i[development test]
 gem 'rack-cors'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.6'

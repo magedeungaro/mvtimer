@@ -7,4 +7,5 @@ Rails.application.routes.draw do
                registrations: 'users/registrations'
              }
   get '/member-data', to: 'members#show'
+  get '/show_plans', to: 'account_tier_types#index'
 end

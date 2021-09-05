@@ -46,7 +46,7 @@ account_tier_types = [
       'Criar e salvar custom cards (Monstro)',
       'Estatisticas sobre monstros'
     ],
-    price: 0,
+    price: 5.99,
     status: true
   },
   {
@@ -57,7 +57,7 @@ account_tier_types = [
       'Estatisticas de performance do clã',
       'Ranking de clãs'
     ],
-    price: 0,
+    price: 14.99,
     status: true
   }
 ]

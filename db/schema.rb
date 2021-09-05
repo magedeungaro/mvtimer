@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2021_09_04_201919) do
 
   # These are extensions that must be enabled in order to support this database
@@ -51,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_09_04_201919) do
     t.bigint "timeable_object_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "timeable_object_type_id", null: false
     t.bigint "guild_id"
     t.string "status"
     t.boolean "killed_by_user"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_09_04_201919) do
     t.index ["guild_id"], name: "index_timeable_object_logs_on_guild_id"
     t.index ["server_id"], name: "index_timeable_object_logs_on_server_id"
     t.index ["timeable_object_id"], name: "index_timeable_object_logs_on_timeable_object_id"
+    t.index ["timeable_object_type_id"], name: "index_timeable_object_logs_on_timeable_object_type_id"
     t.index ["user_id"], name: "index_timeable_object_logs_on_user_id"
   end
 
@@ -66,12 +67,10 @@ ActiveRecord::Schema.define(version: 2021_09_04_201919) do
   end
 
   create_table "timeable_objects", force: :cascade do |t|
-    t.bigint "timeable_object_type_id", null: false
     t.bigint "user_id", null: false
     t.string "map_id"
     t.bigint "interval"
     t.string "name"
-    t.index ["timeable_object_type_id"], name: "index_timeable_objects_on_timeable_object_type_id"
     t.index ["user_id"], name: "index_timeable_objects_on_user_id"
   end
 
@@ -99,9 +98,9 @@ ActiveRecord::Schema.define(version: 2021_09_04_201919) do
 
   add_foreign_key "timeable_object_logs", "guilds"
   add_foreign_key "timeable_object_logs", "servers"
+  add_foreign_key "timeable_object_logs", "timeable_object_types"
   add_foreign_key "timeable_object_logs", "timeable_objects"
   add_foreign_key "timeable_object_logs", "users"
-  add_foreign_key "timeable_objects", "timeable_object_types"
   add_foreign_key "timeable_objects", "users"
   add_foreign_key "users", "account_tier_types"
   add_foreign_key "users", "guild_member_types"

@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_09_04_201919) do
 
   # These are extensions that must be enabled in order to support this database
@@ -17,6 +18,11 @@ ActiveRecord::Schema.define(version: 2021_09_04_201919) do
 
   create_table "account_tier_types", force: :cascade do |t|
     t.string "description"
+    t.float "price"
+    t.float "discount"
+    t.string "title"
+    t.string "image"
+    t.boolean "status"
   end
 
   create_table "guild_member_types", force: :cascade do |t|
@@ -43,7 +49,12 @@ ActiveRecord::Schema.define(version: 2021_09_04_201919) do
     t.bigint "server_id", null: false
     t.bigint "user_id", null: false
     t.bigint "timeable_object_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.bigint "guild_id"
+    t.string "status"
+    t.boolean "killed_by_user"
+    t.datetime "deadline"
     t.index ["guild_id"], name: "index_timeable_object_logs_on_guild_id"
     t.index ["server_id"], name: "index_timeable_object_logs_on_server_id"
     t.index ["timeable_object_id"], name: "index_timeable_object_logs_on_timeable_object_id"
@@ -59,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_09_04_201919) do
     t.bigint "user_id", null: false
     t.string "map_id"
     t.bigint "interval"
+    t.string "name"
     t.index ["timeable_object_type_id"], name: "index_timeable_objects_on_timeable_object_type_id"
     t.index ["user_id"], name: "index_timeable_objects_on_user_id"
   end

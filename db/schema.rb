@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_09_05_192934) do
   enable_extension "plpgsql"
 
   create_table "account_tier_types", force: :cascade do |t|
-    t.string "description"
+    t.jsonb "description"
     t.float "price"
     t.float "discount"
     t.string "title"

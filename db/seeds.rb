@@ -105,9 +105,15 @@ timeable_objects = [
   }
 ]
 
-servers = %w[
-  bRO-Thor
-  bRO-Valhalla
+servers = [
+  {
+    description: 'bRO-Thor',
+    timezone: '	Brazil/East'
+  },
+  {
+    description: 'bRO-Valhalla',
+    timezone: '	Brazil/East'
+  }
 ]
 
 member_types = %w[
@@ -150,7 +156,10 @@ end
 
 puts 'Creating servers'
 servers.each do |server|
-  Server.create(description: server)
+  Server.create(
+    description: server[:description],
+    timezone: server[:timezone]
+  )
 end
 
 puts 'Creating Guild Member Types'

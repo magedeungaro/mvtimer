@@ -2,8 +2,9 @@
 
 class MembersController < ApplicationController
   before_action :authenticate_user!
+  respond_to :json
 
   def show
-    render json: { message: "If you see this, you're in! Magê é linda e fofa <3" }
+    respond_with AccountTierType.where(status: true), status: :ok
   end
 end

@@ -1,5 +1,5 @@
 class AddStatusToTimeableObjectLog < ActiveRecord::Migration[6.0]
   def change
-    add_column :timeable_object_logs, :status, :string
+    add_column :timeable_object_logs, :status, :string, null: true
   end
 end

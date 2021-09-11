@@ -4,9 +4,8 @@ class CreateTimeableObjectLog < ActiveRecord::Migration[6.0]
       t.string :description
       t.references :server, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-      t.references :timeable_object, null: false, foreign_key: true
+      t.references :timeable_object, null: true, foreign_key: true
       t.timestamps null: false
-      t.references :timeable_object_type, null: false, foreign_key: true
     end
   end
 end

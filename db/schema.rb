@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_201459) do
   enable_extension "plpgsql"
 
   create_table "account_tier_types", force: :cascade do |t|
-    t.string "description"
+    t.jsonb "description"
     t.float "price"
     t.float "discount"
     t.string "title"
@@ -68,24 +68,18 @@ ActiveRecord::Schema.define(version: 2021_09_11_201459) do
     t.string "description"
     t.bigint "server_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "timeable_object_id", null: false
+    t.bigint "timeable_object_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "timeable_object_type_id", null: false
     t.bigint "guild_id"
     t.string "status"
     t.boolean "killed_by_user"
-    t.datetime "deadline"
-    t.datetime "DeathTime"
+    t.datetime "deadline", null: false
+    t.datetime "death_time"
     t.index ["guild_id"], name: "index_timeable_object_logs_on_guild_id"
     t.index ["server_id"], name: "index_timeable_object_logs_on_server_id"
     t.index ["timeable_object_id"], name: "index_timeable_object_logs_on_timeable_object_id"
-    t.index ["timeable_object_type_id"], name: "index_timeable_object_logs_on_timeable_object_type_id"
     t.index ["user_id"], name: "index_timeable_object_logs_on_user_id"
-  end
-
-  create_table "timeable_object_types", force: :cascade do |t|
-    t.string "description"
   end
 
   create_table "timeable_objects", force: :cascade do |t|
@@ -122,7 +116,6 @@ ActiveRecord::Schema.define(version: 2021_09_11_201459) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "timeable_object_logs", "guilds"
   add_foreign_key "timeable_object_logs", "servers"
-  add_foreign_key "timeable_object_logs", "timeable_object_types"
   add_foreign_key "timeable_object_logs", "timeable_objects"
   add_foreign_key "timeable_object_logs", "users"
   add_foreign_key "timeable_objects", "users"

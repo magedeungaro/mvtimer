@@ -116,11 +116,6 @@ member_types = %w[
   Membro
 ]
 
-timeable_object_types = %w[
-  Quest
-  Monstro
-]
-
 guilds = [
   {
     guild_name: 'CuteGuild',
@@ -161,11 +156,6 @@ end
 puts 'Creating Guild Member Types'
 member_types.each do |member_type|
   GuildMemberType.create(description: member_type)
-end
-
-puts 'Creating Timable Object Type'
-timeable_object_types.each do |timeable_object_type|
-  TimeableObjectType.create(description: timeable_object_type)
 end
 
 puts 'Creating Timable Objects'

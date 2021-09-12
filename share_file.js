@@ -86,9 +86,10 @@ for (let i = 0; i < mvps_array.length; i++) {
     if (props[j] == "photo") {
       tempobj[props[j]] = link_pattern + [i] + ".gif";
     }
-    mvps.push(tempobj);
-    tempobj = {};
   }
+  mvps.push(tempobj);
+  console.log(tempobj);
+  tempobj = {};
 }
 
 fs.writeFile("monsters.json", JSON.stringify(mvps), function (err) {

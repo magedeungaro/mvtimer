@@ -62,49 +62,6 @@ account_tier_types = [
   }
 ]
 
-timeable_objects = [
-  {
-    name: 'Orc Herói',
-    map_id: 'gef_fild03',
-    interval: 3_600_000
-  },
-  {
-    name: 'Maya',
-    map_id: 'anthell02 ',
-    interval: 7_200_000
-  },
-  {
-    name: 'Maya',
-    map_id: 'gld_dun03 ',
-    interval: 28_800_000
-  },
-  {
-    name: 'Maya',
-    map_id: 'gld_dun02_2',
-    interval: 28_800_000
-  },
-  {
-    name: 'Senhor dos Orcs',
-    map_id: 'gef_fild10',
-    interval: 7_200_000
-  },
-  {
-    name: 'Besouro-ladrão Dourado',
-    map_id: 'prt_sewb4',
-    interval: 3_600_000
-  },
-  {
-    name: 'Eddga',
-    map_id: 'pay_fild10',
-    interval: 7_200_000
-  },
-  {
-    name: 'Eddga',
-    map_id: 'gld_dun01 ',
-    interval: 28_800_000
-  }
-]
-
 servers = [
   {
     description: 'bRO-Thor',

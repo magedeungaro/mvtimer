@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/member-data', to: 'members#show'
   get '/show_plans', to: 'account_tier_types#index'
   get '/show_timeable_objects', to: 'timeable_object#index'
+  get '/show_timeable_object_logs', to: 'timeable_object_log#index'
   post '/update_user_info', to: 'users/config#update_user_info', defaults: { format: :json }
   post '/create_timeable_object', to: 'timeable_object#create', defaults: { format: :json }
   post '/create_timeable_object_log', to: 'timeable_object_log#create', defaults: { format: :json }

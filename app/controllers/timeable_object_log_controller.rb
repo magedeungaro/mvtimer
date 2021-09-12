@@ -4,7 +4,11 @@ class TimeableObjectLogController < ApplicationController
   before_action :authenticate_user!
   respond_to :json
 
-  def create
+  def index
+    respond_with TimeableObjectLog.where(status: true, user_id:current_user.id), status: :ok
+  end
+
+  def create # rubocop:disable
     timeable_object_log = TimeableObjectLog.new(
       killed_by_user: timeable_object_log_params[:killed_by_user],
       timeable_object_id: timeable_object_log_params[:timeable_object_id],
@@ -19,10 +23,9 @@ class TimeableObjectLogController < ApplicationController
     deadline_nil = timeable_object_log.deadline.nil?
     timeable_object_log.calculate_deadline(timeable_object_log_params[:death_hour]) if deadline_nil
 
-    #return head :bad_request unless timeable_object_log.valid?
+    return head :bad_request unless timeable_object_log.valid?
 
     timeable_object_log.save!
-
     head :ok
   end
 

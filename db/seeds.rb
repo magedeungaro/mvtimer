@@ -108,11 +108,11 @@ timeable_objects = [
 servers = [
   {
     description: 'bRO-Thor',
-    timezone: '	Brazil/East'
+    timezone: 'America/Sao_Paulo'
   },
   {
     description: 'bRO-Valhalla',
-    timezone: '	Brazil/East'
+    timezone: 'America/Sao_Paulo'
   }
 ]
 
@@ -167,12 +167,12 @@ member_types.each do |member_type|
   GuildMemberType.create(description: member_type)
 end
 
-puts 'Creating Timable Objects'
+puts 'Creating Timeable Objects'
 timeable_objects.each do |timeable_object|
   TimeableObject.create(
     user_id: User.pluck(:id).sample,
     map_id: timeable_object[:map_id],
-    interval: timeable_object[:interval],
+    interval: timeable_object[:interval] / 1000,
     name: timeable_object[:name]
   )
 end
@@ -183,4 +183,20 @@ guilds.each do |guild|
     guild_name: guild[:guild_name],
     description: guild[:description]
   )
+end
+
+puts 'Creating Timeable Object Logs'
+TimeableObject.all.each do |timeable_object|
+  timeable_object_log = TimeableObjectLog.new(
+    killed_by_user: false,
+    timeable_object_id: timeable_object.id,
+    description: 'xx',
+    server_id: 1,
+    guild_id: 1,
+    user_id: User.pluck(:id).sample
+  )
+
+  random_hour = "#{rand(0..23)}:#{rand(0..59)}"
+  timeable_object_log.calculate_deadline(random_hour)
+  timeable_object_log.save!
 end

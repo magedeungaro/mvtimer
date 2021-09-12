@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_221135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "guild_id"
-    t.string "status"
+    t.boolean "status", default: true
     t.boolean "killed_by_user"
     t.datetime "deadline", null: false
     t.datetime "death_time"

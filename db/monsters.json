@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Orc Herói",
+    "delete": "1h",
+    "map_id": "gef_fild03",
+    "interval": 3600000,
+    "photo": "https://github.com/mostvaluabletimer/mostvaluabletimer.github.io/raw/master/img/mvp/0.gif"
+  },
+  {
+    "name": "Maya",
+    "delete": "2h",
+    "map_id": "anthell02 ",
+    "interval": 7200000,
+    "photo": "https://github.com/mostvaluabletimer/mostvaluabletimer.github.io/raw/master/img/mvp/1.gif"
+  },
+  {
+    "name": "Maya",
+    "delete": "8h",
+    "map_id": "gld_dun03 ",
+    "interval": 28800000,
+    "photo": "https://github.com/mostvaluabletimer/mostvaluabletimer.github.io/raw/master/img/mvp/2.gif"
+  },
+  {
+    "name": "Maya",
+    "delete": "8h",
+    "map_id": "gld_dun02_2",
+    "interval": 28800000,
+    "photo": "https://github.com/mostvaluabletimer/mostvaluabletimer.github.io/raw/master/img/mvp/3.gif"
+  }
+]

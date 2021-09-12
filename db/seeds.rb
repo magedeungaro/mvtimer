@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'json'
+require 'open-uri'
+
+timeable_objects_serialized = File.read('/home/johngvc/code/johngvc/projects/mvtimer/db/monsters.json')
+timeable_objects = JSON.parse(timeable_objects_serialized).map(&:symbolize_keys)
 
 users = [
   {
@@ -126,12 +124,19 @@ end
 
 puts 'Creating Timeable Objects'
 timeable_objects.each do |timeable_object|
-  TimeableObject.create(
+  timeable_object_instance = TimeableObject.new(
     user_id: User.pluck(:id).sample,
     map_id: timeable_object[:map_id],
     interval: timeable_object[:interval] / 1000,
     name: timeable_object[:name]
   )
+
+  timeable_object_instance.photo.attach(
+    io: URI.open(timeable_object[:photo]),
+    filename: "#{timeable_object[:name]}.gif",
+    content_type: 'image/gif'
+  )
+  timeable_object_instance.save!
 end
 
 puts 'Creating Guilds'

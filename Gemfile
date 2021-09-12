@@ -6,7 +6,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 
 # Gemfile
-gem 'cloudinary'
+gem 'active_model_serializers'
+gem 'cloudinary', '~> 1.16.0'
 gem 'devise'
 gem 'devise-jwt'
 gem 'dotenv-rails', groups: %i[development test]

@@ -3,7 +3,7 @@
 require 'json'
 require 'open-uri'
 
-timeable_objects_serialized = File.read('/home/johngvc/code/johngvc/projects/mvtimer/db/monsters.json')
+timeable_objects_serialized = File.read('db/monsters.json')
 timeable_objects = JSON.parse(timeable_objects_serialized).map(&:symbolize_keys)
 
 users = [
@@ -36,16 +36,19 @@ account_tier_types = [
       'Estatisticas de performance própria'
     ],
     price: 0,
-    status: true
+    status: true,
+    image: 'https://static.divine-pride.net/images/mobs/png/2316.png  '
   },
   {
     title: 'Mini Boss',
     description: [
       'Criar e salvar custom cards (Monstro)',
-      'Estatisticas sobre monstros'
+      'Estatisticas sobre monstros',
+      'Sem propagandas'
     ],
     price: 5.99,
-    status: true
+    status: true,
+    image: 'https://static.divine-pride.net/images/mobs/png/1766.png'
   },
   {
     title: 'MVP',
@@ -56,7 +59,8 @@ account_tier_types = [
       'Ranking de clãs'
     ],
     price: 14.99,
-    status: true
+    status: true,
+    image: 'https://static.divine-pride.net/images/mobs/png/3810.png'
   }
 ]
 
@@ -94,7 +98,8 @@ account_tier_types.each do |account_tier_type|
     title: account_tier_type[:title],
     description: account_tier_type[:description],
     price: account_tier_type[:price],
-    status: account_tier_type[:status]
+    status: account_tier_type[:status],
+    image: account_tier_type[:image]
   )
 end
 

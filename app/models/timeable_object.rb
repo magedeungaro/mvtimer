@@ -2,6 +2,6 @@
 
 class TimeableObject < ApplicationRecord
   belongs_to :user
-  has_many :timeable_object_log
+  has_many :timeable_object_logs
   has_one_attached :photo
 end

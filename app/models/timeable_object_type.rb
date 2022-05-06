@@ -1,3 +1,3 @@
 class TimeableObjectType < ApplicationRecord
-  has_many :timeable_object
+  has_many :timeable_objects
 end

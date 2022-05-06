@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TimeableObjectController < ApplicationController
+class TimeableObjectsController < ApplicationController
   respond_to :json
   before_action :authenticate_user!
 

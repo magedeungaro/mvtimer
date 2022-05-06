@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_221135) do
+ActiveRecord::Schema.define(version: 2022_05_06_012312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_221135) do
     t.string "map_id"
     t.bigint "interval"
     t.string "name"
-    t.boolean "private"
+    t.boolean "private", default: false, null: false
     t.index ["user_id"], name: "index_timeable_objects_on_user_id"
   end
 
